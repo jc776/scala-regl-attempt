@@ -1,0 +1,24 @@
+package com.jc776.geom.core
+import scala.scalajs.js
+
+object Vec3 {
+  def apply(x: Double, y: Double, z: Double): Vec3 = js.Tuple3(x,y,z)
+
+  implicit class Vec3Ops(val data: Vec3) extends AnyVal {
+    def x = data._1
+    def y = data._2
+    def z = data._3
+
+    def -(other: Vec3) = Vec3(
+      x - other.x,
+      y - other.y,
+      z - other.z
+    )
+
+    def cross(other: Vec3) = Vec3(
+      y*other.z - z*other.y,
+      z*other.x - x*other.z,
+      x*other.y - y*other.x
+    )
+  }
+}

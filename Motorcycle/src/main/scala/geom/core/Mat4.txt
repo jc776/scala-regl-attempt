@@ -1,0 +1,26 @@
+package com.jc776.geom.core
+import scala.scalajs.js
+
+object Mat4 {
+  // def apply()...
+
+  // COLUMN-major, for GL.
+
+  val identity: Mat4 = js.Tuple16(
+    1.0,0.0,0.0,0.0,
+    0.0,1.0,0.0,0.0,
+    0.0,0.0,1.0,0.0,
+    0.0,0.0,0.0,1.0
+  )
+
+  def perspective(fovy: Double, aspect: Double, near: Double, far: Double): Mat4 = {
+    val f = math.tan(math.Pi * 0.5 - 0.5 * fovy)
+    val nf = 1.0 / (near - far)
+    js.Tuple16(
+      f/aspect,0.0,0.0,0.0,
+      0.0,f,0.0,0.0,
+      0.0,0.0,(far+near)*nf,-1.0,
+      0.0,0.0,2*far*near*nf,0.0
+    )
+  }
+}

@@ -1,0 +1,16 @@
+package com.jc776.geom.core
+import scala.scalajs.js
+
+object Vec4 {
+  def apply(x: Double, y: Double, z: Double, w: Double): Vec4 =
+    js.Tuple4(x,y,z,w)
+  def apply(xyz: Vec3, w: Double): Vec4 =
+    js.Tuple4(xyz.x, xyz.y, xyz.z, w)
+
+  implicit class Vec4Ops(val data: Vec4) extends AnyVal {
+    def x = data._1
+    def y = data._2
+    def z = data._3
+    def w = data._4
+  }
+}
